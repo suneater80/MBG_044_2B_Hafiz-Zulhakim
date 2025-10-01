@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BahanBakuController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -19,6 +20,10 @@ Route::get('/gudang', function () {
     }
     return view('gudang.dashboard');
 });
+
+//menambahkan bahan baku pada gudang
+Route::get('/gudang/bahan/tambah', [BahanBakuController::class, 'create']);
+Route::post('/gudang/bahan/simpan', [BahanBakuController::class, 'store']);
 
 //tampilan awal Dapur
 Route::get('/dapur', function () {
