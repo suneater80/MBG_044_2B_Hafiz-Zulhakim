@@ -14,8 +14,8 @@
 <body class="bg-light">
 <div class="container mt-4">
     <h2>Data Bahan Baku</h2>
-    <a href="/gudang" class="btn btn-secondary mb-3">← Kembali</a>
-    <a href="/gudang/bahan/tambah" class="btn btn-primary mb-3">+ Tambah Bahan</a>
+    <a href="/gudang" class="btn btn-secondary mb-3">← Kembali ke Dashboard</a>
+    <a href="/gudang/bahan/tambah" class="btn btn-primary mb-3">+ Tambah Bahan Baku</a>
 
     <div class="table-responsive">
         <table class="table table-bordered">
@@ -28,6 +28,7 @@
                     <th>Tgl Masuk</th>
                     <th>Tgl Kadaluarsa</th>
                     <th>Status</th>
+                    <th>Aksi</th> <!-- Kolom Aksi -->
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +44,10 @@
                         <span class="badge status-{{ $b->status_real }}">
                             {{ ucfirst(str_replace('_', ' ', $b->status_real)) }}
                         </span>
+                    </td>
+                    <td>
+                        <!-- Tombol Edit Stok -->
+                        <a href="/gudang/bahan/{{ $b->id }}/edit-stok" class="btn btn-sm btn-warning">Edit Stok</a>
                     </td>
                 </tr>
                 @endforeach

@@ -24,7 +24,15 @@ Route::get('/gudang', function () {
 //menambahkan bahan baku pada gudang
 Route::get('/gudang/bahan/tambah', [BahanBakuController::class, 'create']);
 Route::post('/gudang/bahan/simpan', [BahanBakuController::class, 'store']);
+
+//menampilkan bahan baku
 Route::get('/gudang/bahan', [BahanBakuController::class, 'index']);
+
+//update stock bahan baju
+Route::get('/gudang/bahan/{id}/edit-stok', [BahanBakuController::class, 'editStok']);
+Route::post('/gudang/bahan/{id}/update-stok', [BahanBakuController::class, 'updateStok']);
+
+
 
 //tampilan awal Dapur
 Route::get('/dapur', function () {

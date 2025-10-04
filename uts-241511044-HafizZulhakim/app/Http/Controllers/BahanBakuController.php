@@ -80,4 +80,36 @@ class BahanBakuController extends Controller
         return view('gudang.lihat_bahan', compact('bahanDenganStatus'));
     }
 
+    //menampilkan form edit stok
+    public function editStok($id)
+    {
+        if (session('role') !== 'gudang') {
+            return redirect('/login');
+        }
+
+        $bahan = DB::table('bahan_baku')->where('id', $id)->first();
+        if (!$bahan) {
+            return redirect('/gudang/bahan')->withErrors('Bahan tidak ditemukan.');
+        }
+
+        return view('gudang.edit_stok', compact('bahan'));
+    }
+
+    //proses update stok
+    public function updateStok(Request $request, $id)
+    {
+        $request->validate([
+            'jumlah' => 'required|integer|min:0',
+        ]);
+
+        $jumlahBaru = $request->jumlah;
+
+        // Update hanya kolom jumlah
+        DB::table('bahan_baku')->where('id', $id)->update([
+            'jumlah' => $jumlahBaru,
+        ]);
+
+        return redirect('/gudang/bahan')->with('success', 'Stok berhasil diperbarui.');
+    }
+
 }
