@@ -24,6 +24,7 @@ Route::get('/gudang', function () {
 //menambahkan bahan baku pada gudang
 Route::get('/gudang/bahan/tambah', [BahanBakuController::class, 'create']);
 Route::post('/gudang/bahan/simpan', [BahanBakuController::class, 'store']);
+Route::get('/gudang/bahan', [BahanBakuController::class, 'index']);
 
 //tampilan awal Dapur
 Route::get('/dapur', function () {

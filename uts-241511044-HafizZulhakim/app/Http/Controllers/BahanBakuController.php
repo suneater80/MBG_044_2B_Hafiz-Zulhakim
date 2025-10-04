@@ -45,4 +45,39 @@ class BahanBakuController extends Controller
         return redirect('/gudang')->with('success', 'Bahan baku berhasil ditambahkan.');
     }
 
+    public function index()
+    {
+        if (session('role') !== 'gudang') {
+            return redirect('/login');
+        }
+
+        //mengambil semua data bahan baku
+        $bahanList = DB::table('bahan_baku')->get();
+
+        //menentukan ulang status setiap bahan
+        $bahanDenganStatus = [];
+        $today = date('Y-m-d');
+
+        foreach ($bahanList as $b) {
+            $stok = $b->jumlah;
+            $exp = $b->tanggal_kadaluarsa;
+
+            if ($stok == 0) {
+                $status = 'habis';
+            } elseif ($today >= $exp) {
+                $status = 'kadaluarsa';
+            } elseif (strtotime($exp) - strtotime($today) <= 3 * 24 * 60 * 60) {
+                $status = 'segera_kadaluarsa';
+            } else {
+                $status = 'tersedia';
+            }
+
+            //menambahkan properti status baru
+            $b->status_real = $status;
+            $bahanDenganStatus[] = $b;
+        }
+
+        return view('gudang.lihat_bahan', compact('bahanDenganStatus'));
+    }
+
 }
