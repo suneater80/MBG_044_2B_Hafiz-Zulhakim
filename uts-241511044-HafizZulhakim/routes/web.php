@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\PermintaanController;
+use App\Http\Controllers\GudangController;
 
 
 Route::get('/', function () {
@@ -38,6 +39,10 @@ Route::post('/gudang/bahan/{id}/update-stok', [BahanBakuController::class, 'upda
 Route::get('/gudang/bahan/{id}/hapus', [BahanBakuController::class, 'confirmHapus']);
 Route::post('/gudang/bahan/{id}/proses-hapus', [BahanBakuController::class, 'hapus']);
 
+//Proses Permintaan Bahan dari Dapur
+Route::get('/gudang/permintaan', [GudangController::class, 'kelolaPermintaan']);
+Route::get('/gudang/permintaan/{id}/acc', [GudangController::class, 'accPermintaan']);
+Route::get('/gudang/permintaan/{id}/tolak', [GudangController::class, 'tolakPermintaan']);
 
 
 //tampilan awal Dapur

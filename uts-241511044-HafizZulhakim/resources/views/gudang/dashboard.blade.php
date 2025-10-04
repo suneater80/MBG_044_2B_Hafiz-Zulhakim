@@ -14,6 +14,7 @@
     <div class="mb-4">
         <a href="/gudang/bahan" class="btn btn-info">Lihat Data Bahan Baku</a>
         <a href="/gudang/bahan/tambah" class="btn btn-success ms-2">+ Tambah Bahan Baku</a>
+        <a href="/gudang/permintaan" class="btn btn-primary ms-2">Kelola Permintaan</a>
     </div>
 
     <a href="{{ route('logout') }}" class="btn btn-outline-danger">Logout</a>
