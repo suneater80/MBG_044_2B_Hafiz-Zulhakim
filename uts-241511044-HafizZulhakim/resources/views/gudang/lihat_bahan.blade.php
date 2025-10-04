@@ -46,8 +46,11 @@
                         </span>
                     </td>
                     <td>
-                        <!-- Tombol Edit Stok -->
+                        <!-- Tombol untuk Edit Stok -->
                         <a href="/gudang/bahan/{{ $b->id }}/edit-stok" class="btn btn-sm btn-warning">Edit Stok</a>
+                        @if($b->status_real === 'kadaluarsa')
+                            <a href="/gudang/bahan/{{ $b->id }}/hapus" class="btn btn-sm btn-danger ms-1">Hapus</a>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

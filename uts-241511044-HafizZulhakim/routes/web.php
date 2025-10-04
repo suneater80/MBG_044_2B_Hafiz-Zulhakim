@@ -32,6 +32,10 @@ Route::get('/gudang/bahan', [BahanBakuController::class, 'index']);
 Route::get('/gudang/bahan/{id}/edit-stok', [BahanBakuController::class, 'editStok']);
 Route::post('/gudang/bahan/{id}/update-stok', [BahanBakuController::class, 'updateStok']);
 
+//menghapus stock yang kadaluarsa
+Route::get('/gudang/bahan/{id}/hapus', [BahanBakuController::class, 'confirmHapus']);
+Route::post('/gudang/bahan/{id}/proses-hapus', [BahanBakuController::class, 'hapus']);
+
 
 
 //tampilan awal Dapur
