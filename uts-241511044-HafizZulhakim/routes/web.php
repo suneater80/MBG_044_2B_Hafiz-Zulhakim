@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BahanBakuController;
+use App\Http\Controllers\PermintaanController;
+
 
 Route::get('/', function () {
     return redirect('/login');
@@ -45,3 +47,10 @@ Route::get('/dapur', function () {
     }
     return view('dapur.dashboard');
 });
+
+//membuat permintaan bahan baku
+Route::get('/dapur/permintaan/buat', [PermintaanController::class, 'create']);
+Route::post('/dapur/permintaan/simpan', [PermintaanController::class, 'store']);
+
+//melihat status permintaan
+Route::get('/dapur/permintaan', [PermintaanController::class, 'index']);
